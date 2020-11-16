@@ -9,4 +9,8 @@ public class Physician extends Employee {
 	public void heal() {
 		System.out.println("I am healing");
 	}
+
+	public void work() {
+		System.out.println("I am working like a physician");
+	}
 }
