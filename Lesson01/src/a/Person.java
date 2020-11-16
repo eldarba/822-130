@@ -3,7 +3,7 @@ package a;
 public class Person {
 
 	// attributes / fields
-	private int id;
+	int id;
 	private String name;
 	private int age;
 
