@@ -1,6 +1,6 @@
-package d;
+package d.accessLevels;
 
-import c.AccessLevels;
+import c.accessLevels.AccessLevels;
 
 public class B extends AccessLevels {
 	public static void main(String[] args) {

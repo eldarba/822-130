@@ -1,6 +1,6 @@
-package c;
+package c.accessLevels;
 
-public class B extends AccessLevels {
+public class A {
 	public static void main(String[] args) {
 
 		System.out.println(AccessLevels.aPublic);
