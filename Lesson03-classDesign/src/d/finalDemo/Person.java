@@ -22,4 +22,10 @@ public final class Person { // final classes cannot be extented
 		return id;
 	}
 
+	// overriding the toString method from Object class
+	@Override
+	public String toString() {
+		return "Person[id=" + id + ", name=" + name + "]";
+	}
+
 }
