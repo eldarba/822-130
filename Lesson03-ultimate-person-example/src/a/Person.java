@@ -72,4 +72,9 @@ public class Person {
 		return true;
 	}
 
+	@Override
+	protected void finalize() throws Throwable {
+		System.out.println(">>> finalize:" + this + " is going to be GCed - cleard from heao memory");
+	}
+
 }

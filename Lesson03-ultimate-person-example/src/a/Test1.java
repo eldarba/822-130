@@ -7,5 +7,12 @@ public class Test1 {
 		Person p2 = p1;
 
 		System.out.println(p1.equals(p2));
+
+		p1 = null;
+		p2 = null;
+
+		System.gc();
+
+		System.out.println("END");
 	}
 }
