@@ -32,4 +32,24 @@ public class Point {
 		return "(" + x + ", " + y + ")";
 	}
 
+	@Override
+	public int hashCode() {
+		return 200 + (x + y) * 123 / x;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Point)) {
+			return false;
+		} else {
+			Point other = (Point) obj;
+			return this.x == other.x && this.y == other.y;
+//			if (this.x == other.x && this.y == other.y) {
+//				return true;
+//			} else {
+//				return false;
+//			}
+		}
+	}
+
 }
