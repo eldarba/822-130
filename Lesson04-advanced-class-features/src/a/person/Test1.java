@@ -4,12 +4,12 @@ public class Test1 {
 
 	public static void main(String[] args) {
 
-		// static reference - use class name
+//		 static reference - use class name
 		System.out.println("count: " + Person.getCounter());
 
-		Person p1 = new Person(111, "Dan");
+		Person p1 = new Person("Dan");
 
-		Person p2 = new Person(222, "Dikla");
+		Person p2 = new Person("Dikla");
 
 		// dynamic reference - use instance reference name
 		System.out.println(p2.id);
