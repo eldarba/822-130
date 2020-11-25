@@ -15,7 +15,8 @@ public class Test {
 
 		for (int i = 0; i < shapes.length; i++) {
 			Shape curr = shapes[i];
-			System.out.println(curr.getClass().getSimpleName() + " area: " + curr.getArea());
+			Class classOfCurrShape = curr.getClass(); // get a reference to the class object of this shape
+			System.out.println(classOfCurrShape.getSimpleName() + " area: " + curr.getArea());
 		}
 
 	}
