@@ -4,31 +4,31 @@ public class Hawk extends Bird implements AdvancedFlyer {
 
 	@Override
 	public void fly() {
-		// TODO Auto-generated method stub
+		System.out.println("fly like a hawk");
 
 	}
 
 	@Override
 	public void navigate() {
-		// TODO Auto-generated method stub
+		System.out.println("navigate like a hawk");
 
 	}
 
 	@Override
 	public void takeOff() {
-		// TODO Auto-generated method stub
+		System.out.println("takeOff like a hawk");
 
 	}
 
 	@Override
 	public void land() {
-		// TODO Auto-generated method stub
+		System.out.println("land like a hawk");
 
 	}
 
 	@Override
 	public void speak() {
-		// TODO Auto-generated method stub
+		System.out.println("speak like a hawk");
 
 	}
 
