@@ -19,4 +19,8 @@ public class Zoo {
 		index++;
 	}
 
+	public void makeFly(Flyer flyer) {
+		flyer.fly();
+	}
+
 }

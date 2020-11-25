@@ -13,5 +13,13 @@ public class TestZoo {
 		zoo.add(new Bat());
 
 		zoo.makeAllAnimalSpeak();
+
+		System.out.println("=====================");
+		Bat bat = new Bat();
+		Ostrich ostrich = new Ostrich();
+		zoo.makeFly(bat);
+//		zoo.makeFly(ostrich);
+		System.out.println("=====================");
+		System.out.println(Flyer.MIN_ALT);
 	}
 }
