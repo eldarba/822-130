@@ -16,6 +16,9 @@ public class Test {
 		Citizen c4 = russia.new Citizen("Alex");
 		Citizen c5 = russia.new Citizen("Vlad");
 
+		System.out.println(c3);
+		System.out.println(c4 + ": population " + c4.getState().getPopulation());
+
 	}
 
 }
