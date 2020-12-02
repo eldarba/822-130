@@ -7,7 +7,11 @@ public class Test {
 		try {
 			car.drive(30);
 			car.drive(130);
+		} catch (CarException e) {
+			System.out.println("CarException");
+			e.printStackTrace();
 		} catch (Exception e) {
+			System.out.println("some other error");
 			e.printStackTrace();
 		}
 
