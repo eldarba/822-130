@@ -36,7 +36,7 @@ public class DemoTrees {
 			System.out.println(set);
 		}
 
-		{// others are sorted by ?
+		{// others are sorted by its natural order
 			Set<Person> set = new TreeSet<>();
 			set.add(new Person(103, "ccc", 55));
 			set.add(new Person(101, "aaa", 22));
