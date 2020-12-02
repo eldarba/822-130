@@ -1,13 +1,13 @@
 package b.exercice;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Tar2 {
 
 	public static void main(String[] args) {
 
-		Set<Integer> set = new TreeSet<Integer>();
+		Set<Integer> set = new LinkedHashSet<Integer>();
 
 		int x = 0;
 		while (set.size() < 10) {
