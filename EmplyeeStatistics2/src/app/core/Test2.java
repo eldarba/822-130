@@ -3,17 +3,17 @@ package app.core;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Test {
+public class Test2 {
 
 	public static void main(String[] args) {
 
-		Set<Employee> emps = new HashSet<Employee>();
+		Set<Manager> emps = new HashSet<>();
 
 		emps.add(null);
 		emps.add(new Manager("aaa", "aaa", 4000, "Sales"));
-		emps.add(new Employee("bbb", "aaa", 5000, "Legal"));
+		emps.add(new Manager("bbb", "aaa", 5000, "Legal"));
 		emps.add(new Manager("ccc", "aaa", 6000, "Legal"));
-		emps.add(new Employee("ddd", "aaa", 7000, "Sales"));
+		emps.add(new Manager("ddd", "aaa", 7000, "Sales"));
 		emps.add(null);
 
 		// ================================
