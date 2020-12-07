@@ -50,4 +50,20 @@ public class Point {
 		return "Point [x=" + x + ", y=" + y + "]";
 	}
 
+	/**
+	 * returns a value within the legal range of x , y coordinates. if the specified
+	 * value is above max - assigns max. if below minimum, assigns minimum.
+	 * 
+	 * @param val the value to validate
+	 * @return
+	 */
+	public static int validateXY(int val) {
+		if (val < MIN) {
+			val = MIN;
+		} else if (val > MAX) {
+			val = MAX;
+		}
+		return val;
+	}
+
 }
