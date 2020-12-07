@@ -1,4 +1,4 @@
-package a.homework.poin;
+package a.homework.point;
 
 import java.util.Scanner;
 

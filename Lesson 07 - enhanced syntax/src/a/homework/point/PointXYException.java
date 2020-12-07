@@ -1,4 +1,4 @@
-package a.homework.poin;
+package a.homework.point;
 
 public class PointXYException extends Exception {
 
