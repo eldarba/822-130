@@ -1,5 +1,6 @@
 package app.core;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class EmployeeStatistics {
@@ -34,6 +35,28 @@ public class EmployeeStatistics {
 			}
 		}
 		return counter;
+	}
+
+	public static Collection<Manager> getManagers(Collection<Employee> emps) {
+		Collection<Manager> managers = new ArrayList<Manager>();
+		for (Employee employee : emps) {
+			if (employee instanceof Manager) {
+				managers.add((Manager) employee);
+			}
+		}
+		return managers;
+	}
+
+	public static void insertEmployees1(Collection<Manager> source, Collection<Employee> destination) {
+		destination.addAll(source);
+	}
+
+	public static <T extends Employee> void insertEmployees2(Collection<T> source, Collection<? super T> destination) {
+		destination.addAll(source);
+	}
+
+	public static <T> void insertAny(Collection<T> source, Collection<? super T> destination) {
+		destination.addAll(source);
 	}
 
 }
