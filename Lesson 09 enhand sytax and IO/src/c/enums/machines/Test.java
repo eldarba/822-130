@@ -33,6 +33,9 @@ public class Test {
 		MachineMode mode = MachineMode.valueOf(sc.nextLine());
 		System.out.println(mode);
 
+		// get the ordinal (index) of an enum instance
+		System.out.println("ordinal: " + mode.ordinal());
+
 		sc.close();
 
 	}
