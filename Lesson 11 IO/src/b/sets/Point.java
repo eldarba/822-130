@@ -1,6 +1,11 @@
 package b.sets;
 
-public class Point {
+import java.io.Serializable;
+
+public class Point implements Serializable {
+
+	// update version on each class update
+	private static final long serialVersionUID = 1L;
 
 	private int x;
 	private int y;

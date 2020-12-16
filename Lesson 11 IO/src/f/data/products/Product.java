@@ -1,5 +1,6 @@
 package f.data.products;
 
+import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -26,7 +27,20 @@ public class Product {
 	}
 
 	public void save() throws IOException {
+		// save with buffer
 		try (DataOutputStream out = new DataOutputStream(new FileOutputStream(PRODUCTS_FILE));) {
+			out.writeUTF(this.name);
+			out.writeDouble(this.price);
+			out.writeInt(this.barcode);
+			System.out.println(this + " written to: " + PRODUCTS_FILE);
+		}
+	}
+
+	// you can use buffer
+	public void saveWithBuffer() throws IOException {
+		// save with buffer
+		try (DataOutputStream out = new DataOutputStream(
+				new BufferedOutputStream(new FileOutputStream(PRODUCTS_FILE)));) {
 			out.writeUTF(this.name);
 			out.writeDouble(this.price);
 			out.writeInt(this.barcode);
