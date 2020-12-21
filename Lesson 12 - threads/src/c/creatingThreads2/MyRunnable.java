@@ -9,8 +9,13 @@ public class MyRunnable implements Runnable {
 		// in order to get access to Thread class methods we need a Thread reference
 		Thread curr = Thread.currentThread();
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 1; i <= 3; i++) {
 			System.out.println("hello from thread: " + curr.getName() + ": " + i);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
