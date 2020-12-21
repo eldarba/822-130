@@ -13,6 +13,7 @@ public class Demo1 {
 
 		System.out.println("is t1 daemon: " + t1.isDaemon());
 		System.out.println("is t2 daemon: " + t2.isDaemon());
+		System.out.println("t1 priority: " + t1.getPriority());
 
 		t1.start();
 		t2.start();
