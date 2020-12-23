@@ -10,8 +10,8 @@ public class Connect2MySql {
 	public static void main(String[] args) {
 
 		String url = "jdbc:mysql://localhost:3306/db1?serverTimezone=Israel&createDatabaseIfNotExist=true";
-		String user = "eldar1";
-		String password = "pass1";
+		String user = "eldar1"; // use your own user
+		String password = "pass1"; // use your own password
 
 		try (Connection con = DriverManager.getConnection(url, user, password);) {
 			System.out.println("connected to: " + url);
