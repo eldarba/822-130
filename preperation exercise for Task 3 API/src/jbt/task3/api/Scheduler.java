@@ -3,20 +3,29 @@ package jbt.task3.api;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Scheduler {
 
-	private List<Task> tasks = new ArrayList<Task>();
+	private Set<Task> tasks = new TreeSet<Task>();
 	private boolean monitoringActive;
 	private long checkRateMilis = 1000;
 
-	public void addTask(Task task) {
-		tasks.add(task);
+	public synchronized void addTask(Task task) throws Exception {
+		boolean added = tasks.add(task);
+		if (!added) {
+			throw new Exception("addTask faild for task: " + task);
+		}
 	}
 
-	public void removeTask(int taskId) throws Exception {
+	public synchronized void removeTask(int taskId) throws Exception {
+
 		Task taskToRemove = new Task(taskId, null, null);
-		if (!tasks.remove(taskToRemove)) {
+
+		boolean isRemoved = tasks.remove(taskToRemove);
+
+		if (!isRemoved) {
 			throw new Exception("removing task id " + taskId + " failed: not found");
 		}
 
@@ -31,23 +40,38 @@ public class Scheduler {
 	}
 
 	public Task getTask(int taskId) {
-		Task taskToFetch = new Task(taskId, null, null);
-		int index = tasks.indexOf(taskToFetch);
-		if (index != -1) {
-			return tasks.get(index);
-		} else {
-			return null;
+
+		for (Task task : tasks) {
+			if (task.getId() == taskId) {
+				return task;
+			}
 		}
+		return null;
+
 	}
 
-	public List<Task> getAllTasks() {
+	public Set<Task> getAllTasks() {
 		return tasks;
 	}
 
+	/**
+	 * this method returns the tasks that should be completed up to the specified
+	 * date
+	 */
 	public List<Task> getAllTasksDueUntil(LocalDateTime deadline) {
 		List<Task> dueTasks = new ArrayList<Task>();
 		for (Task task : this.tasks) {
 			if (task.getDeadline().isBefore(deadline)) {
+				dueTasks.add(task);
+			}
+		}
+		return dueTasks;
+	}
+
+	public List<Task> getAllTasksDueUntilAndNotDone(LocalDateTime deadline) {
+		List<Task> dueTasks = new ArrayList<Task>();
+		for (Task task : this.tasks) {
+			if (task.getDeadline().isBefore(deadline) && !task.isDone()) {
 				dueTasks.add(task);
 			}
 		}
@@ -79,7 +103,7 @@ public class Scheduler {
 	/**
 	 * go through all tasks and display alert on all tasks that passed deadline.
 	 */
-	public void checkDeadlines() {
+	public synchronized void checkDeadlines() {
 		LocalDateTime now = LocalDateTime.now();
 		for (Task task : tasks) {
 			if (task.getDeadline().isBefore(now) && !task.isAlertPopped()) {
@@ -93,6 +117,7 @@ public class Scheduler {
 		@Override
 		public void run() {
 			System.out.println("start monitoring task deadlines");
+
 			while (monitoringActive) {
 				checkDeadlines();
 				try {
@@ -101,6 +126,7 @@ public class Scheduler {
 					e.printStackTrace();
 				}
 			}
+
 			System.out.println("stoped monitoring task deadlines");
 		}
 	}

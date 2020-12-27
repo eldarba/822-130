@@ -86,7 +86,7 @@ public class TaskSchedulerApplication {
 		s.displayTasks();
 	}
 
-	private void doAdd() {
+	private void doAdd() throws Exception {
 		System.out.print("enter task id: ");
 		int id = Integer.parseInt(sc.nextLine());
 		System.out.print("enter task description: ");

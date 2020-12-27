@@ -96,7 +96,7 @@ public class Task implements Comparable<Task> {
 
 	@Override
 	public int compareTo(Task other) {
-		if (this.id == other.id) {
+		if (this.equals(other)) {
 			return 0;
 		}
 		return this.deadline.compareTo(other.deadline);
