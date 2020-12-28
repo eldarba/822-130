@@ -3,9 +3,8 @@ package c.sql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class demo2DropTable {
+public class demo2CreateTable {
 
 	public static void main(String[] args) {
 
@@ -17,14 +16,16 @@ public class demo2DropTable {
 			System.out.println("connected to: " + url);
 
 			// ===================work with the database======================
-			// we need a statement object in order to execute SQL commands
-			Statement stmt = con.createStatement();
-			// create an SQL command as String
-			String sql = "drop table book";
-			// execute the SQL command
-			int rowsEffected = stmt.executeUpdate(sql);
+			String sql = "create table book";
+			sql += "(";
+			sql += "id int primary key, ";
+			sql += "title varchar(25), ";
+			sql += "author varchar(25), ";
+			sql += "price float, ";
+			sql += "publication date";
+			sql += ")";
+
 			System.out.println(sql);
-			System.out.println("effected rows: " + rowsEffected);
 			// ===============================================================
 
 		} catch (SQLException e) {
