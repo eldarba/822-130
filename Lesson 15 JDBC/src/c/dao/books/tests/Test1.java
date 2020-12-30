@@ -2,7 +2,6 @@ package c.dao.books.tests;
 
 import javax.swing.JOptionPane;
 
-import c.dao.books.Book;
 import c.dao.books.BookDao;
 import c.dao.books.BookDaoDb;
 import c.dao.books.DaoException;
@@ -29,15 +28,56 @@ public class Test1 {
 		}
 
 		{ // getting a book
+//			try {
+//				int id = Integer.parseInt(JOptionPane.showInputDialog("enter book id"));
+//				Book book = bookDao.get(id);
+//				System.out.println(book);
+//			} catch (DaoException e) {
+//				e.printStackTrace();
+//			}
+		}
 
+		{ // updating an existing book
+//			try {
+//				// get a book
+//				int id = Integer.parseInt(JOptionPane.showInputDialog("enter book id"));
+//				Book book = bookDao.get(id);
+//				System.out.println(book);
+//				if (book != null) {
+//					// update the price in the object
+//					book.setPrice(book.getPrice() * 1.1);
+//					// update the price in the database
+//					bookDao.update(book);
+//					System.out.println(book);
+//				} else {
+//					System.out.println("book with id: " + id + " not found");
+//				}
+//			} catch (DaoException e) {
+//				e.printStackTrace();
+//			}
+		}
+
+		{ // updating a non existing book - will throw an exception
+//			try {
+//				// create a book instance
+//				Book book = new Book(-1, "aaa", "vvv", 100, LocalDate.now());
+//				bookDao.update(book);
+//				System.out.println(book);
+//			} catch (DaoException e) {
+////				e.printStackTrace();
+//				JOptionPane.showMessageDialog(null, e.getMessage());
+//			}
+		}
+
+		{
+			int id = Integer.parseInt(JOptionPane.showInputDialog("enter book id to delete"));
 			try {
-				int id = Integer.parseInt(JOptionPane.showInputDialog("enter book id"));
-				Book book = bookDao.get(id);
-				System.out.println(book);
+				bookDao.delete(id);
+				System.out.println("book " + id + " deleted");
 			} catch (DaoException e) {
 				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
-
 		}
 
 	}
