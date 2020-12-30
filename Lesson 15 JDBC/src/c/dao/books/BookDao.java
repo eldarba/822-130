@@ -22,10 +22,11 @@ public interface BookDao {
 	Book get(int id) throws DaoException;
 
 	/**
-	 * update book in storage
+	 * update book in storage or throws an exception if the book is not in the
+	 * database.
 	 * 
 	 * @param book
-	 * @throws DaoException
+	 * @throws DaoException if the specified book not found
 	 */
 	void update(Book book) throws DaoException;
 
@@ -33,7 +34,7 @@ public interface BookDao {
 	 * delete book from storage
 	 * 
 	 * @param id
-	 * @throws DaoException
+	 * @throws DaoException if the book of the specified id not found
 	 */
 	void delete(int id) throws DaoException;
 

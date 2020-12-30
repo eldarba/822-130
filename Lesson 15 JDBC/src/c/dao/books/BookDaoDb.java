@@ -45,6 +45,7 @@ public class BookDaoDb implements BookDao {
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
+				// if we are here a book with the specifies ID was found
 				Book book = new Book(id);
 				book.setTitle(rs.getString("title"));
 				book.setAuthor(rs.getString("author"));
@@ -53,6 +54,7 @@ public class BookDaoDb implements BookDao {
 				book.setPublication(localDate);
 				return book;
 			} else {
+				// if we are here a book with the specifies ID was NOT found
 				return null;
 				// or you can throw an exception that the book was not found
 			}
@@ -65,29 +67,36 @@ public class BookDaoDb implements BookDao {
 
 	@Override
 	public void update(Book book) throws DaoException {
-		// TODO Auto-generated method stub
-
+		try (Connection con = DriverManager.getConnection(url, user, password);) {
+			String sql = "update book set title=?, author=?, price=?, publication=? where id=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, book.getTitle());
+			pstmt.setString(2, book.getAuthor());
+			pstmt.setDouble(3, book.getPrice());
+			pstmt.setDate(4, Date.valueOf(book.getPublication())); // convert LocalDate to java.sql.Date
+			pstmt.setInt(5, book.getId()); // set the id
+			int rowCount = pstmt.executeUpdate();
+			if (rowCount == 0) {
+				throw new DaoException("update book " + book + " faild because it is not in the database");
+			}
+		} catch (SQLException e) {
+			throw new DaoException("update book: " + book + " faild", e);
+		}
 	}
 
 	@Override
 	public void delete(int id) throws DaoException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void main(String[] args) {
-
-		try {
-			BookDaoDb dao = new BookDaoDb();
-
-			Book book = new Book(601, "aaa", "bbb", 150, LocalDate.of(1974, 5, 7));
-			dao.save(book);
-
-		} catch (DaoException e) {
-			System.out.println(e);
-			System.out.println(e.getCause());
-			System.out.println("========================");
-			e.printStackTrace(System.out);
+		try (Connection con = DriverManager.getConnection(url, user, password);) {
+			String sql = "delete from book where id = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			int rowCount = pstmt.executeUpdate();
+			if (rowCount == 0) {
+				throw new DaoException("delete book " + id + " faild because it is not in the database");
+			}
+		} catch (SQLException e) {
+			throw new DaoException("delete book with id: " + id + " faild", e);
 		}
 	}
+
 }
