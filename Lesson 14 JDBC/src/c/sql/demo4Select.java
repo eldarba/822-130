@@ -24,7 +24,7 @@ public class demo4Select {
 			System.out.println(rs);
 
 			rs.next(); // now we are in the first row
-			int id = rs.getInt(1); // you can get column value by index
+			int id = rs.getInt(1); // you can get column value by index in the result set
 			String title = rs.getString("title"); // you can get column value by column name
 
 			System.out.println(id);

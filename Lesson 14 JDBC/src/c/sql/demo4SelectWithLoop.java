@@ -24,7 +24,7 @@ public class demo4SelectWithLoop {
 			// ===================work with the database======================
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			con.close();
+//			con.close();
 //			stmt.close();
 //			rs.close();
 
