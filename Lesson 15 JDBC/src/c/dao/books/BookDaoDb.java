@@ -50,8 +50,12 @@ public class BookDaoDb implements BookDao {
 				book.setTitle(rs.getString("title"));
 				book.setAuthor(rs.getString("author"));
 				book.setPrice(rs.getDouble("price"));
-				LocalDate localDate = LocalDate.parse(rs.getDate("publication").toString());
+				// convert java.sql.Date to java.time.LocatDate
+				Date dateSql = rs.getDate("publication");
+				LocalDate localDate = dateSql.toLocalDate();
+				//
 				book.setPublication(localDate);
+
 				return book;
 			} else {
 				// if we are here a book with the specifies ID was NOT found
