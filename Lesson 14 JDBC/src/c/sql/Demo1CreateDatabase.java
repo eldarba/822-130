@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class demo1CreateDatabase {
+public class Demo1CreateDatabase {
 
 	public static void main(String[] args) {
 

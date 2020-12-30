@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class demo3insert {
+public class Demo3insert {
 
 	public static void main(String[] args) {
 

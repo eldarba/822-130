@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class demo4Select {
+public class Demo4Select {
 
 	public static void main(String[] args) {
 

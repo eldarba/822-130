@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class demo4SelectWithLoop {
+public class Demo4SelectWithLoop {
 
 	public static void main(String[] args) {
 
