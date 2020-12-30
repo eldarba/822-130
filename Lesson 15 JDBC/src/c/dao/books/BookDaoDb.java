@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -38,8 +39,28 @@ public class BookDaoDb implements BookDao {
 
 	@Override
 	public Book get(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection con = DriverManager.getConnection(url, user, password);) {
+			String sql = "select * from book where id = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Book book = new Book(id);
+				book.setTitle(rs.getString("title"));
+				book.setAuthor(rs.getString("author"));
+				book.setPrice(rs.getDouble("price"));
+				LocalDate localDate = LocalDate.parse(rs.getDate("publication").toString());
+				book.setPublication(localDate);
+				return book;
+			} else {
+				return null;
+				// or you can throw an exception that the book was not found
+			}
+		} catch (SQLException e) {
+			// catch an SQLException and throw a DaoException instead
+			// (the SQLException is cause)
+			throw new DaoException("get book with id: " + id + " faild", e);
+		}
 	}
 
 	@Override
