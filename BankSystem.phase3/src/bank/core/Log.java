@@ -21,7 +21,12 @@ public class Log {
 		this(System.currentTimeMillis(), clientId, description, amout);
 	}
 
-	public String getData() {
+//	public String getData() {
+//		return "Log [ts=" + ts + ", clientId=" + clientId + ", description=" + description + ", amout=" + amout + "]";
+//	}
+
+	@Override
+	public String toString() {
 		return "Log [ts=" + ts + ", clientId=" + clientId + ", description=" + description + ", amout=" + amout + "]";
 	}
 

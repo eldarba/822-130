@@ -11,7 +11,7 @@ public class Logger {
 	}
 
 	public static void log(Log log) {
-		System.out.println(log.getData());
+		System.out.println(log);
 	}
 
 	public Log[] getLogs() {
