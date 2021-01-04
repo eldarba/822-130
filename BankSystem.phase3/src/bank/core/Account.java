@@ -1,5 +1,7 @@
 package bank.core;
 
+import java.util.Objects;
+
 public class Account {
 
 	private int id;
@@ -21,6 +23,25 @@ public class Account {
 
 	public int getId() {
 		return id;
+	}
+
+	// methods added on phase 3
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Account)) {
+			return false;
+		}
+		Account other = (Account) obj;
+		return id == other.id;
 	}
 
 }

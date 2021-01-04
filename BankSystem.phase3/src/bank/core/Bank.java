@@ -7,7 +7,6 @@ public class Bank {
 
 	private float balance; // this is the bank private money
 	private Client[] clients = new Client[100];
-	private Logger logger = new Logger(null);
 	Object accountUpdater; // not supported yet
 
 	// SINGLETON DESIGN PATTERN ========================
@@ -53,7 +52,7 @@ public class Bank {
 				clients[i] = client;
 				// log the operation
 				Log log = new Log(System.currentTimeMillis(), client.getId(), "addClient", client.getFortune());
-				logger.log(log);
+				Logger.log(log);
 				//
 				return;
 			}
@@ -68,12 +67,13 @@ public class Bank {
 	 * 
 	 * @param clientId
 	 */
-	public void removeClient(int clientId) {
+	public void removeClient(Client client) {
 		for (int i = 0; i < clients.length; i++) {
-			if (clients[i] != null && clients[i].getId() == clientId) {
+//			if (clients[i] != null && clients[i].getId() == clientId) {
+			if (client.equals(clients[i])) {
 				// log the operation
-				Log log = new Log(System.currentTimeMillis(), clientId, "removeClient", clients[i].getFortune());
-				logger.log(log);
+				Log log = new Log(System.currentTimeMillis(), client.getId(), "removeClient", clients[i].getFortune());
+				Logger.log(log);
 				//
 				clients[i] = null;
 				return;
@@ -108,6 +108,37 @@ public class Bank {
 
 	public void startAcountUpdater() {
 
+	}
+
+	// methods added in phase 3
+
+	public void addCommission(float amount) {
+		this.balance += amount;
+	}
+
+	public void printClientList() {
+		System.out.println("===== Bank Client List =====");
+		for (Client client : clients) {
+			if (client != null) {
+				System.out.println(client);
+			}
+		}
+		System.out.println("===== ================ =====");
+	}
+
+	/**
+	 * return the client of the specified id or null if not found
+	 * 
+	 * @param clientId
+	 * @return the client of the specified id
+	 */
+	public Client getClient(int clientId) {
+		for (Client client : clients) {
+			if (client != null && client.getId() == clientId) {
+				return client;
+			}
+		}
+		return null;
 	}
 
 }

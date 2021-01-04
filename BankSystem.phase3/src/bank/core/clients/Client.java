@@ -1,18 +1,23 @@
 package bank.core.clients;
 
+import java.util.Objects;
+
 import bank.core.Account;
+import bank.core.Bank;
 import bank.core.Log;
 import bank.core.Logger;
 
-public class Client {
+/*an abstract class cannot be instantiated*/
+public abstract class Client {
 
 	private int id;
 	private String name;
 	private float balance;
 	private Account[] accounts;
-	private float commissionRate;
-	private float interestRate;
-	private Logger logger;
+	// protected fields are accessible to sub classes
+	protected float commissionRate;
+	protected float interestRate;
+	// logger field removed on phase 3
 
 	public Client(int id, String name, float balance) {
 		super();
@@ -20,7 +25,6 @@ public class Client {
 		this.name = name;
 		this.balance = balance;
 		this.accounts = new Account[5];
-		logger = new Logger(null);
 	}
 
 	public void addAcount(Account account) {
@@ -29,7 +33,7 @@ public class Client {
 				accounts[i] = account;
 				// log the operation
 				Log log = new Log(System.currentTimeMillis(), this.id, "addAcount", account.getBalance());
-				logger.log(log);
+				Logger.log(log);
 				//
 				break;
 			}
@@ -54,15 +58,15 @@ public class Client {
 	 * Log the operation via creating Log object with appropriate data and sending
 	 * it to the Logger.log(..) method.
 	 */
-	public void removeAcount(int acountId) {
+	public void removeAcount(Account accountParam) {
 		for (int i = 0; i < accounts.length; i++) {
-			Account account = accounts[i];
-			if (account != null && account.getId() == acountId) {
-				this.balance += account.getBalance(); // transfers the money to the clients balance
+			Account currAccount = accounts[i];
+			if (accountParam.equals(currAccount)) {
+				this.balance += currAccount.getBalance(); // transfers the money to the clients balance
 				accounts[i] = null; // remove the account
 				// log the operation
-				Log log = new Log(System.currentTimeMillis(), this.id, "removeAcount", account.getBalance());
-				logger.log(log);
+				Log log = new Log(System.currentTimeMillis(), this.id, "removeAcount", currAccount.getBalance());
+				Logger.log(log);
 				//
 				return; // end the method here
 			}
@@ -85,7 +89,7 @@ public class Client {
 	}
 
 	private void makeDepositWithdraw(float amount, boolean deposit) {
-		float commission = amount * this.commissionRate; // calculate the commission
+
 		String description = "deposit";
 		if (deposit) {
 			this.balance += amount;
@@ -93,10 +97,17 @@ public class Client {
 			this.balance -= amount;
 			description = "withdraw";
 		}
+		// transfer commission from the client to the bank
+		float commission = amount * this.commissionRate; // calculate the commission
 		this.balance -= commission;
+		Bank.getInstance().addCommission(commission);
 		// log the operation
 		Log log = new Log(System.currentTimeMillis(), this.id, description, amount);
-		logger.log(log);
+		Logger.log(log);
+		//
+		// log the operation
+		Log logCommission = new Log(System.currentTimeMillis(), this.id, "commission", commission);
+		Logger.log(logCommission);
 		//
 
 	}
@@ -114,7 +125,7 @@ public class Client {
 				account.setBalance(account.getBalance() + interest);
 				// log the operation
 				Log log = new Log(System.currentTimeMillis(), this.id, "autoUpdateAccounts", interest);
-				logger.log(log);
+				Logger.log(log);
 				//
 			}
 		}
@@ -159,7 +170,24 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", name=" + name + ", balance=" + balance + "]";
+		return this.getClass().getSimpleName() + "[id=" + id + ", name=" + name + ", balance=" + balance + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Client)) {
+			return false;
+		}
+		Client other = (Client) obj;
+		return id == other.id;
 	}
 
 }
