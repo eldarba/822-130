@@ -1,5 +1,7 @@
 package bank.core;
 
+import java.util.List;
+
 public class Logger {
 
 	// will be in use when working with database
@@ -14,7 +16,7 @@ public class Logger {
 		System.out.println(log);
 	}
 
-	public Log[] getLogs() {
+	public List<Log> getLogs() {
 		return null;
 	}
 

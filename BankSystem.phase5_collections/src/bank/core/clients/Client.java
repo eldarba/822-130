@@ -1,11 +1,15 @@
 package bank.core.clients;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import bank.core.Account;
 import bank.core.Bank;
 import bank.core.Log;
 import bank.core.Logger;
+import bank.core.exceptions.BankSystemException;
 import bank.core.exceptions.WithrawException;
 
 /*an abstract class cannot be instantiated*/
@@ -14,7 +18,7 @@ public abstract class Client {
 	private int id;
 	private String name;
 	private float balance;
-	private Account[] accounts;
+	private Set<Account> accounts;
 	// protected fields are accessible to sub classes
 	protected float commissionRate;
 	protected float interestRate;
@@ -25,46 +29,47 @@ public abstract class Client {
 		this.id = id;
 		this.name = name;
 		this.balance = balance;
-		this.accounts = new Account[5];
+		this.accounts = new HashSet<Account>();
 	}
 
-	public void addAcount(Account account) {
-		for (int i = 0; i < accounts.length; i++) {
-			if (accounts[i] == null) {
-				accounts[i] = account;
-				// log the operation
-				Log log = new Log(System.currentTimeMillis(), this.id, "addAcount", account.getBalance());
-				Logger.log(log);
-				//
-				break;
-			}
+	public void addAcount(Account account) throws BankSystemException {
+		if (this.accounts.add(account)) {
+			// log the operation
+			Log log = new Log(System.currentTimeMillis(), this.id, "addAcount", account.getBalance());
+			Logger.log(log);
+			//
+		} else {
+			throw new BankSystemException("addAcount failed - already exist");
 		}
 	}
 
-	public Account getAcount(int index) {
-//		if(index >= 0 && index < accounts.length) {
-//			return accounts[index];
-//		}else {
-//			return null;
-//		}
-
-		// use ternary operator [?:] instead of if-else construct
-		Account account = index >= 0 && index < accounts.length ? accounts[index] : null;
-		return account;
+	/**
+	 * returns the account of the specified id or null if not found
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Account getAcount(int acountId) {
+		for (Account acount : accounts) {
+			if (acount.getId() == acountId) {
+				return acount;
+			}
+		}
+		return null; // you can decide to throw an exception instead
 	}
 
 	/**
-	 * remove the account with the same id from the array (by assigning a 'null'
-	 * value to the array[position]) & transfers the money to the clients balance.
-	 * Log the operation via creating Log object with appropriate data and sending
-	 * it to the Logger.log(..) method.
+	 * remove the account with the same id from this client & transfers the money to
+	 * the clients balance. Log the operation via creating Log object with
+	 * appropriate data and sending it to the Logger.log(..) method.
+	 * 
+	 * @throws BankSystemException
 	 */
-	public void removeAcount(Account accountParam) {
-		for (int i = 0; i < accounts.length; i++) {
-			Account currAccount = accounts[i];
+	public void removeAcount(Account accountParam) throws BankSystemException {
+		for (Account currAccount : accounts) {
 			if (accountParam.equals(currAccount)) {
 				this.balance += currAccount.getBalance(); // transfers the money to the clients balance
-				accounts[i] = null; // remove the account
+				accounts.remove(currAccount);
 				// log the operation
 				Log log = new Log(System.currentTimeMillis(), this.id, "removeAcount", currAccount.getBalance());
 				Logger.log(log);
@@ -73,7 +78,7 @@ public abstract class Client {
 			}
 		}
 
-		System.out.println("account not found");
+		throw new BankSystemException("removeAcount failed - not found");
 	}
 
 	/**
@@ -168,8 +173,12 @@ public abstract class Client {
 		return id;
 	}
 
-	public Account[] getAccounts() {
+	public Collection<Account> getAccountsAsCollection() {
 		return accounts;
+	}
+
+	public Account[] getAccountsAsArray() {
+		return accounts.toArray(new Account[accounts.size()]);
 	}
 
 	@Override
