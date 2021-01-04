@@ -1,5 +1,7 @@
 package bank.core;
 
+import java.util.Date;
+
 public class Log {
 
 	private long ts;
@@ -27,7 +29,9 @@ public class Log {
 
 	@Override
 	public String toString() {
-		return "Log [ts=" + ts + ", clientId=" + clientId + ", description=" + description + ", amout=" + amout + "]";
+		Date date = new Date(ts);
+		return "Log [date=" + date + ", clientId=" + clientId + ", description=" + description + ", amout=" + amout
+				+ "]";
 	}
 
 }
