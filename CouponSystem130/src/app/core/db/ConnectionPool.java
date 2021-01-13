@@ -54,4 +54,15 @@ public class ConnectionPool {
 		return con;
 	}
 
+	public synchronized void restoreConnection(Connection connection) {
+		connections.add(connection);
+		notify();
+	}
+
+	public synchronized void cloaseAllConnections() {
+		// signal that this connection pool is closing -- boolean field
+		// wait for all connections to come back to pool
+		// iterate the connections set and close each connection
+	}
+
 }
