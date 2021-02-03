@@ -12,12 +12,13 @@ public class Car {
 	private Gear gear;
 
 // CTOR INJECTION
-//	@Autowired
-//	public Car(Engine engine,@Qualifier("basicGear") Gear gear) {
-//		super();
-//		this.engine = engine;
-//		this.gear = gear;
-//	}
+	// CTOR is invoked by Spring
+	@Autowired
+	public Car(Engine engine, @Qualifier("basicGear") Gear gear) {
+		super();
+		this.engine = engine;
+		this.gear = gear;
+	}
 
 	public void startCar() {
 		engine.start();
@@ -33,9 +34,6 @@ public class Car {
 		return engine;
 	}
 
-	// SETTER INJECTION
-	// Autowired will inject an appropriate bean as engine
-	@Autowired
 	public void setEngine(Engine engine) {
 		this.engine = engine;
 	}
@@ -45,8 +43,7 @@ public class Car {
 	}
 
 	// SETTER INJECTION
-	@Autowired
-	public void setGear(@Qualifier("basicGear") Gear gear) {
+	public void setGear(Gear gear) {
 		this.gear = gear;
 	}
 

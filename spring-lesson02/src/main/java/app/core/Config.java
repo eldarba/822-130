@@ -3,12 +3,17 @@ package app.core;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 
 import app.core.components.School;
+import app.core.components.cars.Car;
+import app.core.components.cars.PremiumGear;
+import app.core.components.cars.TurboEngine;
 
 @Configuration
 @ComponentScan
+@PropertySource("application.properties")
 public class Config {
 
 	@Bean("school2")
@@ -29,6 +34,13 @@ public class Config {
 	public Integer randUnchange() {
 		int r = (int) (Math.random() * 101);
 		return r;
+	}
+
+	@Bean
+	public Car specialCar() {
+		// CTOR is invoked by client us
+		Car car = new Car(new TurboEngine(), new PremiumGear());
+		return car;
 	}
 
 }
