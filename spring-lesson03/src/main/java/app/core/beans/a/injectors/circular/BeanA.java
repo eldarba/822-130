@@ -1,9 +1,8 @@
 package app.core.beans.a.injectors.circular;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class BeanA {
 
 	private BeanB b;
