@@ -26,7 +26,8 @@ public class ElectronicsStore implements Store {
 			System.out.println("buy");
 			return "ElectronicsStore buy " + productName + " seccedded";
 		} else {
-			throw new StoreException("ClothingStore: buy " + productName + " failed: not found");
+			System.out.println("ElectronicsStore: buy " + productName + " failed");
+			throw new StoreException("ElectronicsStore: buy " + productName + " failed: not found");
 		}
 	}
 

@@ -4,6 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import app.core.store.Store;
 import app.core.store.StoreException;
+import app.core.store.aspects.ClientServiceAspect;
 
 public class Main {
 
@@ -23,15 +24,47 @@ public class Main {
 
 			try {
 				clothings.buy("Pants");
-//				clothings.buy("tv");
-				elecronics.buy("tv");
-				elecronics.buy("computer");
-//				elecronics.buy("milk");
 			} catch (StoreException e) {
-				e.printStackTrace();
+//				e.printStackTrace(System.out);
+				System.out.println(e);
+			}
+			try {
+				clothings.buy("tv");
+			} catch (StoreException e) {
+//				e.printStackTrace(System.out);
+				System.out.println(e);
+			}
+			try {
+				clothings.buy("Pants");
+			} catch (StoreException e) {
+//				e.printStackTrace(System.out);
+				System.out.println(e);
+			}
+			try {
+				elecronics.buy("tv");
+			} catch (StoreException e) {
+//				e.printStackTrace(System.out);
+				System.out.println(e);
+			}
+			try {
+				elecronics.buy("computer");
+			} catch (StoreException e) {
+//				e.printStackTrace(System.out);
+				System.out.println(e);
+			}
+			try {
+				elecronics.buy("milk");
+			} catch (StoreException e) {
+//				e.printStackTrace(System.out);
+				System.out.println(e);
 			}
 
 			elecronics.returnProduct("tv");
+
+			System.out.println("stats:");
+			ClientServiceAspect clientServiceAspect = ctx.getBean(ClientServiceAspect.class);
+			System.out.println("successful slaes: " + clientServiceAspect.getSalesCounter());
+			System.out.println("failed slaes: " + clientServiceAspect.getSalesFailCounter());
 
 		}
 

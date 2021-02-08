@@ -28,7 +28,7 @@ public class ClothingStore implements Store {
 				return "ClothingStore: buy " + productName + " seccedded";
 			}
 		}
-
+		System.out.println("ClothingStore: buy " + productName + " failed");
 		throw new StoreException("ClothingStore: buy " + productName + " failed: not found");
 	}
 

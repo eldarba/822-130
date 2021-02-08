@@ -27,6 +27,7 @@ public class FoodStore implements Store {
 			System.out.println("buy");
 			return "FoodStore buy " + productName + " seccedded";
 		} else {
+			System.out.println("FoodStore: buy " + productName + " failed");
 			throw new StoreException("FoodStore: buy " + productName + " failed: not found");
 		}
 	}
