@@ -40,7 +40,7 @@ public class ClientServiceAspect {
 		salesAttemptCounter++;
 	}
 
-	// 3. after returning advice
+	// 3. after throwing advice
 	@AfterThrowing(pointcut = "execution(String buy(String))", throwing = "e")
 	public void afterBuyFail(JoinPoint jp, Throwable e) {
 		System.out.println(">>>@AfterThrowing: " + e.getMessage());
