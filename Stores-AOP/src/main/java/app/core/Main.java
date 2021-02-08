@@ -2,7 +2,6 @@ package app.core;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import app.core.store.ClothingStore;
 import app.core.store.Store;
 
 public class Main {
@@ -10,9 +9,10 @@ public class Main {
 	public static void main(String[] args) {
 		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class)) {
 
-			// get the beans
+			// get the beans (the implementation is actually a proxy to our beans)
+			// ask for the interface - not any concrete type
 			Store elecronics = ctx.getBean("electronicsStore", Store.class);
-			Store clothings = ctx.getBean(ClothingStore.class);
+			Store clothings = ctx.getBean("clothingStore", Store.class);
 			Store food = ctx.getBean("foodStore", Store.class);
 
 			// work with the beans
