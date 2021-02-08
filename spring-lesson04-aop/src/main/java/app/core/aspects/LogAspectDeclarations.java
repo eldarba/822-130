@@ -4,14 +4,13 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
+@Order(1)
 public class LogAspectDeclarations {
-
-	private static int getCounter;
-	private static int setCounter;
 
 	// this is a pointcut declaration
 	@Pointcut("execution(* get*(..))")
@@ -22,27 +21,13 @@ public class LogAspectDeclarations {
 	public void setters() {
 	}
 
-	@Before("getters()")
-	public void beforeGet() {
-		getCounter++;
+	@Pointcut("execution(* app.core.dao.coupon.*.*(..))")
+	public void inCouponPacage() {
 	}
 
-	@Before("setters()")
-	public void beforeSet() {
-		setCounter++;
-	}
-
-	@Before("getters() || setters()")
+	@Before("(getters() || setters()) && ! inCouponPacage()")
 	public void beforeGetOrSet(JoinPoint jp) {
 		System.out.println("<><><> (get or set: )" + jp);
-	}
-
-	public static int getGetCounter() {
-		return getCounter;
-	}
-
-	public static int getSetCounter() {
-		return setCounter;
 	}
 
 	@Before("execution(public void add*(..))")
