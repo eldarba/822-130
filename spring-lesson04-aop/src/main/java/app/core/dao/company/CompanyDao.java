@@ -18,4 +18,8 @@ public class CompanyDao {
 		return 5;
 	}
 
+	public void setSomething(int x, String str) {
+		System.out.println("do something");
+	}
+
 }

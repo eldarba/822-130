@@ -23,6 +23,8 @@ public class App3 {
 			companyDao.getCompanies();
 			couponDao.setCoupons();
 
+			companyDao.setSomething(5, "AAA");
+
 			System.out.println("==== stats:");
 			System.out.println("get invoked: " + StatisticsAspectDeclarations.getGetCounter() + " times");
 			System.out.println("set invoked: " + StatisticsAspectDeclarations.getSetCounter() + " times");
