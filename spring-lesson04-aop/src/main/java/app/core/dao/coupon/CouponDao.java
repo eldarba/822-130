@@ -14,7 +14,13 @@ public class CouponDao {
 	}
 
 	public String getCoupons() {
+		System.out.println("getCoupons");
 		return "getting your coupons";
+	}
+
+	public String setCoupons() {
+		System.out.println("setCoupons");
+		return "setting your coupons";
 	}
 
 }

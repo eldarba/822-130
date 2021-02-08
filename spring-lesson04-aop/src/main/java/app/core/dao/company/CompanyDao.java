@@ -14,6 +14,7 @@ public class CompanyDao {
 	}
 
 	public int getCompanies() {
+		System.out.println("getCompanies");
 		return 5;
 	}
 

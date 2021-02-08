@@ -2,7 +2,7 @@ package app.core;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import app.core.aspects.LogAspect;
+import app.core.aspects.LogAspectX;
 import app.core.dao.company.CompanyDao;
 import app.core.dao.coupon.CouponDao;
 import app.core.dao.coupon.CouponDao2;
@@ -14,7 +14,6 @@ public class App3 {
 
 			// get the beans
 			CompanyDao companyDao = ctx.getBean(CompanyDao.class);
-			System.out.println(companyDao.getClass());
 			CouponDao couponDao = ctx.getBean(CouponDao.class);
 			CouponDao2 couponDao2 = ctx.getBean(CouponDao2.class);
 
@@ -22,9 +21,11 @@ public class App3 {
 			companyDao.getCompanies();
 			couponDao.getCoupons();
 			companyDao.getCompanies();
+			couponDao.setCoupons();
 
 			System.out.println("==== stats:");
-			System.out.println("get invoked: " + LogAspect.getGetCounter() + " times");
+			System.out.println("get invoked: " + LogAspectX.getGetCounter() + " times");
+			System.out.println("set invoked: " + LogAspectX.getSetCounter() + " times");
 
 		}
 

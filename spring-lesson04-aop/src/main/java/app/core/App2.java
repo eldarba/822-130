@@ -2,7 +2,7 @@ package app.core;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import app.core.aspects.LogAspect;
+import app.core.aspects.LogAspectX;
 import app.core.dao.company.CompanyDao;
 import app.core.dao.coupon.CouponDao;
 import app.core.dao.coupon.CouponDao2;
@@ -28,7 +28,7 @@ public class App2 {
 			couponDao2.delete();
 
 			System.out.println("==== stats:");
-			System.out.println("get invoked: " + LogAspect.getGetCounter() + " times");
+			System.out.println("get invoked: " + LogAspectX.getGetCounter() + " times");
 
 		}
 
