@@ -1,5 +1,6 @@
 package app.core.aspects;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -8,14 +9,27 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogAspect {
 
-	@Before("execution(public void app.core.dao.company.CompanyDao.addCompany(int, String) throws RuntimeException)")
-	public void logSpecific() {
-		System.out.println(">>> LOG SPECIFIC");
+	private static int getCounter;
+
+	@Before("execution(* get*(..))")
+	public void beforeGet() {
+		getCounter++;
 	}
 
-	@Before("execution(* *.*(..))")
-	public void logAll() {
-		System.out.println(">>> LOG ALL");
+	public static int getGetCounter() {
+		return getCounter;
+	}
+
+	@Before("execution(public void add*(..))")
+	public void beforeAddAdvice(JoinPoint jp) {
+		System.out.println(">>> LogAspect: execute @Before advice on add methods: " + jp);
+		Object target = jp.getTarget();
+		System.out.println("target: " + target.getClass().getSimpleName());
+	}
+
+	@Before("execution(*  app.core.dao.coupon.*.*(..))")
+	public void beforePackageAdvice() {
+		System.out.println("--- LogAspect: execute @Before advice on coupon package");
 	}
 
 }

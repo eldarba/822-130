@@ -13,4 +13,8 @@ public class CouponDao {
 		System.out.println("CouponDao is doing some work");
 	}
 
+	public String getCoupons() {
+		return "getting your coupons";
+	}
+
 }
