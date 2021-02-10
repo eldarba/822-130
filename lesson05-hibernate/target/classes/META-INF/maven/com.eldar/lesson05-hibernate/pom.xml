@@ -5,20 +5,27 @@
 	<groupId>com.eldar</groupId>
 	<artifactId>lesson05-hibernate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<properties>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
 	</properties>
-	
+
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-agroal</artifactId>
 			<version>5.4.28.Final</version>
 			<type>pom</type>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.23</version>
+		</dependency>
+
+
 	</dependencies>
 </project>
