@@ -22,6 +22,14 @@ public class Coupon {
 	@JoinColumn(name = "coupon_id")
 	private List<Review> reviews;
 
+	// conveniency method
+	public void addReview(Review review) {
+		if (this.reviews == null) {
+			this.reviews = new ArrayList<Review>();
+		}
+		this.reviews.add(review);
+	}
+
 	public Coupon() {
 	}
 
@@ -58,14 +66,6 @@ public class Coupon {
 	@Override
 	public String toString() {
 		return "Coupon [id=" + id + ", title=" + title + "]";
-	}
-
-	// conveniency method
-	public void addReview(Review review) {
-		if (this.reviews == null) {
-			this.reviews = new ArrayList<Review>();
-		}
-		this.reviews.add(review);
 	}
 
 }

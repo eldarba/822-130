@@ -19,10 +19,9 @@ public class RelApp01CascadePersist {
 			tx = session.beginTransaction();
 			// =========================
 
-			Coupon coupon = new Coupon(0, "aaa");
-			coupon.addReview(new Review(0, "coment 1"));
-			coupon.addReview(new Review(0, "coment 2"));
-			coupon.addReview(new Review(0, "coment 3"));
+			Coupon coupon = new Coupon(0, "bbb");
+			coupon.addReview(new Review(0, "coment 10"));
+			coupon.addReview(new Review(0, "coment 20"));
 
 			session.persist(coupon);
 
