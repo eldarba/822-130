@@ -17,7 +17,6 @@ public class CompanyAddress {
 	private String country;
 
 	public CompanyAddress() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public CompanyAddress(int id, String city, String country) {

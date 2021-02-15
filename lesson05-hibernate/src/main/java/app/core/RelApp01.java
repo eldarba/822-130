@@ -19,8 +19,8 @@ public class RelApp01 {
 			tx = session.beginTransaction();
 			// =========================
 
-//			Company company = new Company(0, "AAA", "aaa@mail", new CompanyAddress(0, "Tel Aviv", "Israel"));
-			Company company = new Company(0, "BBB", "bbb@mail", null);
+			Company company = new Company(0, "AAA", "aaa@mail", new CompanyAddress(0, "Tel Aviv", "Israel"));
+//			Company company = new Company(0, "BBB", "bbb@mail", null);
 			session.save(company);
 
 			// =========================

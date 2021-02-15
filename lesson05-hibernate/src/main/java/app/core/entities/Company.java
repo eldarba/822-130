@@ -32,6 +32,13 @@ public class Company {
 		this.address = address;
 	}
 
+	public Company(String name, String email, CompanyAddress address) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.address = address;
+	}
+
 	public int getId() {
 		return id;
 	}
