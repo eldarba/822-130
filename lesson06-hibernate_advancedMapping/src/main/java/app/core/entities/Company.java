@@ -1,11 +1,6 @@
 package app.core.entities;
 
-import static javax.persistence.CascadeType.DETACH;
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.CascadeType.REFRESH;
-import static javax.persistence.CascadeType.REMOVE;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +16,8 @@ public class Company {
 	private int id;
 	private String name;
 	private String email;
-	@OneToOne(cascade = { PERSIST, REMOVE, DETACH, MERGE, REFRESH })
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE,
+			CascadeType.REFRESH })
 	@JoinColumn(name = "comp_address_id")
 	private CompanyAddress address;
 

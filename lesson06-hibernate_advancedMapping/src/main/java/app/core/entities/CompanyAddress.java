@@ -1,9 +1,11 @@
 package app.core.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,8 @@ public class CompanyAddress {
 	private int id;
 	private String city;
 	private String country;
+	@OneToOne(mappedBy = "address", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	private Company company;
 
 	public CompanyAddress() {
 	}

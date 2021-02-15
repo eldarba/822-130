@@ -1,5 +1,7 @@
 package app.core;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,7 +10,7 @@ import org.hibernate.cfg.Configuration;
 import app.core.entities.Company;
 import app.core.entities.CompanyAddress;
 
-public class RelApp03CascadeDetach {
+public class RelApp05CascadeRefresh {
 
 	public static void main(String[] args) {
 
@@ -22,19 +24,22 @@ public class RelApp03CascadeDetach {
 			// JPA find
 			Company company = session.find(Company.class, 2); // persistent
 			System.out.println(company);
-			if (company != null) {
-				System.out.println("company persistent? " + session.contains(company)); // true
-				if (company.getAddress() != null) {
-					System.out.println("address persistent? " + session.contains(company.getAddress()));// true
-				}
-				// JPA detach - detach the company from session would cascade to detaching the
-				// address as well
-				session.detach(company); // detach cascades to the associated entity (address)
-				System.out.println("company persistent? " + session.contains(company)); // false
-				if (company.getAddress() != null) {
-					System.out.println("address persistent? " + session.contains(company.getAddress())); // false
-				}
-			}
+
+			String sql1 = "update company set name='Foo' where id=2";
+			String sql2 = "update company_address set city='Bar' where id=2";
+
+			Query query1 = session.createNativeQuery(sql1);
+			Query query2 = session.createNativeQuery(sql2);
+
+			query1.executeUpdate();
+			query2.executeUpdate();
+
+			System.out.println(company); // not synchronized with db
+
+			// JPA refresh
+			session.refresh(company);
+			System.out.println(company); // now synchronized with db
+			System.out.println(company.getAddress()); // now synchronized with db
 
 			// =========================
 
