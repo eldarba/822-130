@@ -54,6 +54,14 @@ public class CompanyAddress {
 		this.country = country;
 	}
 
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
 	@Override
 	public String toString() {
 		return "CompanyAddress [id=" + id + ", city=" + city + ", country=" + country + "]";
