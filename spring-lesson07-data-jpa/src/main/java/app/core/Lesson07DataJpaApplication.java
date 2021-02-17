@@ -1,11 +1,11 @@
 package app.core;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.domain.Sort;
 
 import app.core.entities.Student;
 import app.core.repositories.StudentRepository;
@@ -89,10 +89,37 @@ public class Lesson07DataJpaApplication {
 //					System.out.println(student);
 //				}
 			}
+			{
+////				List<Student> maleStudents = studentRepository.getAllOlderThan(50);
+//				List<Student> maleStudents = studentRepository.getAllOlderThan(50, Sort.by("age"));
+//				for (Student student : maleStudents) {
+//					System.out.println(student);
+//				}
+
+			}
+			{
+////				List<Student> maleStudents = studentRepository.getAllOlderThan(50);
+//				List<Student> maleStudents = studentRepository.findByName("Dan");
+//				for (Student student : maleStudents) {
+//					System.out.println(student);
+//				}
+
+			}
+			{
+//				long x = studentRepository.countByActiveTrue();
+//				System.out.println("number of active students: " + x);
+//				List<Student> maleStudents = studentRepository.findByActiveTrue();
+//				for (Student student : maleStudents) {
+//					System.out.println(student);
+//				}
+
+			}
+
 			System.out.println("==============");
 			{
-//				List<Student> maleStudents = studentRepository.getAllOlderThan(50);
-				List<Student> maleStudents = studentRepository.getAllOlderThan(50, Sort.by("age"));
+				LocalDate enrollmentDate = LocalDate.of(2020, 1, 1);
+				System.out.println("enrooled after: " + enrollmentDate);
+				List<Student> maleStudents = studentRepository.findByEnrollmentAfter(enrollmentDate);
 				for (Student student : maleStudents) {
 					System.out.println(student);
 				}

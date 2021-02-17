@@ -1,5 +1,6 @@
 package app.core.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
@@ -24,5 +25,16 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 	@Query("from Student where age > :age")
 	List<Student> getAllOlderThan(int age, Sort sort);
+
+	// derived queries
+	List<Student> findByName(String name);
+
+	List<Student> findByNameIsNot(String name);
+
+	List<Student> findByActiveTrue();
+
+	Long countByActiveTrue();
+
+	List<Student> findByEnrollmentAfter(LocalDate enrollmentDate);
 
 }
