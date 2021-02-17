@@ -1,5 +1,8 @@
 package app.core.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,28 @@ public class AdminService {
 
 	public University addUniversity(University university) {
 		return universityRepository.save(university);
+	}
+
+	public Student getStudent(int id) {
+		Optional<Student> opt = studentRepository.findById(id);
+		if (opt.isPresent()) {
+			return opt.get();
+		} else {
+			return null;
+		}
+	}
+
+	public University getUniversity(int id) {
+		Optional<University> opt = universityRepository.findById(id);
+		if (opt.isPresent()) {
+			return opt.get();
+		} else {
+			return null;
+		}
+	}
+
+	public List<Student> getStudents(int universityId) {
+		return studentRepository.findByUniversityId(universityId);
 	}
 
 }
