@@ -19,6 +19,10 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 	@Query(value = "select * from Student where gender='M'", nativeQuery = true)
 	List<Student> getMaleStudents();
 
-	// all students above
+	@Query("from Student where age > :age")
+	List<Student> getAllOlderThan(int age);
+
+	@Query("from Student where age > :age")
+	List<Student> getAllOlderThan(int age, Sort sort);
 
 }

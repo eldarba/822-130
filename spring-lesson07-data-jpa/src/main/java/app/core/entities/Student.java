@@ -1,5 +1,7 @@
 package app.core.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,9 +16,12 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private Integer age;
 	private String email;
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
+	private boolean active;
+	private LocalDate enrollment;
 
 	public enum Gender {
 		M, F
@@ -25,19 +30,14 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String name, String email, Gender gender) {
+	public Student(String name, Integer age, String email, Gender gender, boolean active, LocalDate enrollment) {
 		super();
 		this.name = name;
+		this.age = age;
 		this.email = email;
 		this.gender = gender;
-	}
-
-	public Student(Integer id, String name, String email, Gender gender) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.gender = gender;
+		this.active = active;
+		this.enrollment = enrollment;
 	}
 
 	public Integer getId() {
@@ -56,6 +56,14 @@ public class Student {
 		this.name = name;
 	}
 
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -72,9 +80,26 @@ public class Student {
 		this.gender = gender;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public LocalDate getEnrollment() {
+		return enrollment;
+	}
+
+	public void setEnrollment(LocalDate enrollment) {
+		this.enrollment = enrollment;
+	}
+
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", gender=" + gender + "]";
+		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + ", gender=" + gender
+				+ ", active=" + active + ", enrollment=" + enrollment + "]";
 	}
 
 }
