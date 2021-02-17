@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Override
 	public int saveStudent(Student student) {
-		// Session session = entityManager.unwrap(Session.class);
+//		Session session = entityManager.unwrap(Session.class);
 		entityManager.persist(student);
 		return student.getId();
 	}
@@ -31,19 +32,29 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Override
 	public List<Student> getAllStudents() {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Student> query = entityManager.createQuery("from Student", Student.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public boolean updateStudent(Student student) {
-		// TODO Auto-generated method stub
+		Student studentFromDb = entityManager.find(Student.class, student.getId());
+		if (studentFromDb != null) {
+			entityManager.merge(student); // this will update everything
+			studentFromDb.setName(student.getName());
+			studentFromDb.setEmail(student.getEmail());
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteStudent(int id) {
-		// TODO Auto-generated method stub
+		Student studentFromDb = entityManager.find(Student.class, id);
+		if (studentFromDb != null) {
+			entityManager.remove(studentFromDb);
+			return true;
+		}
 		return false;
 	}
 

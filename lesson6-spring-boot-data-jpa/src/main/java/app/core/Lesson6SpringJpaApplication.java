@@ -12,8 +12,10 @@ public class Lesson6SpringJpaApplication {
 
 	public static void main(String[] args) {
 		try (ConfigurableApplicationContext ctx = SpringApplication.run(Lesson6SpringJpaApplication.class, args);) {
-			StudentDAO dao = ctx.getBean(StudentDAO.class);
-			dao.saveStudent(new Student("aaa", "aaa@mail"));
+
+			StudentDAO studentDAO = ctx.getBean(StudentDAO.class);
+			studentDAO.saveStudent(new Student("aaa", "aaa@mail"));
+			studentDAO.saveStudent(new Student("bbb", "bbb@mail"));
 
 		}
 	}
