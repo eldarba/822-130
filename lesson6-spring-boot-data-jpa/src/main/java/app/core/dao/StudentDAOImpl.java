@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import app.core.entities.Student;
 
 @Repository // component
-@Transactional // starts and endds transaction for each method
+@Transactional // starts and ends transaction for each method
 public class StudentDAOImpl implements StudentDAO {
 
 	@PersistenceContext // auto wiring
