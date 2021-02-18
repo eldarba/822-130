@@ -5,14 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import app.core.entities.Student;
 
 @Repository // component
-@Transactional // starts and ends transaction for each method
+@Transactional // starts and endds transaction for each method
 public class StudentDAOImpl implements StudentDAO {
 
 	@PersistenceContext // auto wiring

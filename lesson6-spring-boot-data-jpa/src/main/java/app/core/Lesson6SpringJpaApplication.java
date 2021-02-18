@@ -3,11 +3,13 @@ package app.core;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import app.core.dao.StudentDAO;
 import app.core.entities.Student;
 
 @SpringBootApplication
+@EnableTransactionManagement
 public class Lesson6SpringJpaApplication {
 
 	public static void main(String[] args) {
