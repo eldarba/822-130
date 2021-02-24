@@ -9,10 +9,12 @@ import javax.jws.soap.SOAPBinding.Style;
 public class Calculator {
 
 	public int sum(int a, int b) {
+		System.out.println("sum invoked");
 		return a + b;
 	}
 
 	public String greetStudent(Student student) {
+		System.out.println("greetStudent invoked");
 		return "Hello " + student.getName();
 	}
 }
