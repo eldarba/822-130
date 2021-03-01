@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,11 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService service;
+
+	@GetMapping("/greet")
+	public String greet() {
+		return "Hello from the web service";
+	}
 
 	@RequestMapping(path = "/employees2", method = { RequestMethod.GET, RequestMethod.POST }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
@@ -67,13 +73,30 @@ public class EmployeeController {
 	// it.
 	@PostMapping(path = "/employees", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public Employee addEmployee(@RequestBody Employee employee) {
-		return service.addEmployee(employee);
+		try {
+			return service.addEmployee(employee);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+		}
 	}
 
-	@PostMapping("/employees/{name}/{role}")
-	public Employee addEmployee(@PathVariable String name, @PathVariable String role) {
-		Employee emp = new Employee(0, name, role);
-		return service.addEmployee(emp);
+//	@PostMapping("/employees/{name}/{role}")
+//	public Employee addEmployee(@PathVariable String name, @PathVariable String role) {
+//		Employee emp = new Employee(0, name, role);
+//		try {
+//			return service.addEmployee(emp);
+//		} catch (Exception e) {
+//			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+//		}
+//	}
+
+	@PutMapping("/employees")
+	public Employee updateEmployee(@RequestBody Employee employee) {
+		try {
+			return service.updateEmp(employee);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "updateEmployee failed: " + e.getMessage());
+		}
 	}
 
 }

@@ -18,8 +18,12 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository repo;
 
-	public Employee addEmployee(Employee emp) {
-		return repo.save(emp);
+	public Employee addEmployee(Employee emp) throws Exception {
+		if (!repo.existsById(emp.getId())) {
+			return repo.save(emp);
+		} else {
+			throw new Exception("an employee with id " + emp.getId() + " already exixts");
+		}
 	}
 
 	public Employee getEmployee(int empId) throws Exception {
