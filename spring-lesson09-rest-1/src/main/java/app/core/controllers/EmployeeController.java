@@ -65,7 +65,7 @@ public class EmployeeController {
 
 	// add a controller end point for adding a new employee to the system. and test
 	// it.
-	@PostMapping("/employees")
+	@PostMapping(path = "/employees", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public Employee addEmployee(@RequestBody Employee employee) {
 		return service.addEmployee(employee);
 	}
