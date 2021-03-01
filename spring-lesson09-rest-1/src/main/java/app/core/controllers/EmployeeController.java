@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import app.core.entities.Employee;
+import app.core.entities.EmployeeListWrapper;
 import app.core.services.EmployeeService;
 
 @RestController
@@ -41,6 +42,13 @@ public class EmployeeController {
 	@GetMapping("/employees")
 	public List<Employee> getAllEmps() {
 		return service.getAllEmps();
+	}
+
+	@GetMapping("/employees/wrapped")
+	public EmployeeListWrapper getAllEmpsWrapped() {
+		EmployeeListWrapper wrapper = new EmployeeListWrapper();
+		wrapper.setEmps(service.getAllEmps());
+		return wrapper;
 	}
 
 //	@GetMapping("/employees/{id}")
