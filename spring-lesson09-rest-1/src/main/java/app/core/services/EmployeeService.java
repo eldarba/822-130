@@ -22,12 +22,12 @@ public class EmployeeService {
 		return repo.save(emp);
 	}
 
-	public Employee getEmployee(int empId) {
+	public Employee getEmployee(int empId) throws Exception {
 		Optional<Employee> opt = repo.findById(empId);
 		if (opt.isPresent()) {
 			return opt.get();
 		} else {
-			return null;
+			throw new Exception("employee with id " + empId + " not found");
 		}
 	}
 
@@ -35,7 +35,7 @@ public class EmployeeService {
 		return repo.findAll();
 	}
 
-	public Employee updateEmp(Employee emp) {
+	public Employee updateEmp(Employee emp) throws Exception {
 		Employee empFromDb = getEmployee(emp.getId());
 		if (empFromDb != null) {
 			empFromDb.setName(emp.getName());
