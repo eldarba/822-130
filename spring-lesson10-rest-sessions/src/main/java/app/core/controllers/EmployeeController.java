@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import app.core.entities.Employee;
 import app.core.services.EmployeeService;
+import app.core.sessions.Session;
+import app.core.sessions.SessionContext;
 
 @RestController
 @RequestMapping("/api")
@@ -25,10 +28,17 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService service;
+	@Autowired
+	private SessionContext sessionContext;
 
+	// the calling client will supply their token in the request header
 	@GetMapping("/greet")
-	public String greet() {
-		return "Hello from the web service";
+	public String greet(@RequestHeader String token) {
+		Session session = sessionContext.getSession(token);
+		if (session != null) {
+			return "Hello " + session.getAttribute("userName");
+		}
+		return "Hello not logged user";
 	}
 
 	@GetMapping("/employees")
