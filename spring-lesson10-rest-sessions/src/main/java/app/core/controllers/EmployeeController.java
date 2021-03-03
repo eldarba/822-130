@@ -37,14 +37,8 @@ public class EmployeeController {
 	// this end point is for remote system shutdown
 	@PutMapping("/kill")
 	public String kill(@RequestHeader String token, @RequestParam long millis) {
-		Session session = sessionContext.getSession(token);
-		if (session != null) {
-			closeSpringContext(millis);
-			return "closing spring app in " + millis + " millis";
-		} else {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "not logged in");
-		}
-
+		closeSpringContext(millis);
+		return "closing spring app in " + millis + " millis";
 	}
 
 	private void closeSpringContext(long millis) {
@@ -77,13 +71,7 @@ public class EmployeeController {
 
 	@GetMapping("/employees")
 	public List<Employee> getAllEmps(@RequestHeader String token) {
-		Session session = sessionContext.getSession(token);
-		if (session != null) {
-			return service.getAllEmps();
-		} else {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "not logged in");
-		}
-
+		return service.getAllEmps();
 	}
 
 	// http://localhost:8080/api/employees/one/1
@@ -92,7 +80,7 @@ public class EmployeeController {
 		try {
 			return service.getEmployee(id);
 		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "getOneEmp failed - not found");
 		}
 	}
 
