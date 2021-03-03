@@ -33,7 +33,7 @@ public class LoginFilter implements Filter {
 			System.out.println("session good - forwarding the request");
 			chain.doFilter(request, response);
 		} else {
-			// if we are here we do not have a valid session
+			// if we are here, we do not have a valid session
 			System.out.println("NO session - block the request");
 			HttpServletResponse resp = (HttpServletResponse) response;
 			resp.sendError(HttpStatus.UNAUTHORIZED.value(), "you are not logged in");
