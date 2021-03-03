@@ -37,7 +37,6 @@ public class LoginFilter implements Filter {
 			System.out.println("NO session - block the request");
 			HttpServletResponse resp = (HttpServletResponse) response;
 			resp.sendError(HttpStatus.UNAUTHORIZED.value(), "you are not logged in");
-
 		}
 
 	}
