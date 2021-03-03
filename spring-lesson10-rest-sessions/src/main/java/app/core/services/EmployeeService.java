@@ -48,8 +48,14 @@ public class EmployeeService {
 		return empFromDb;
 	}
 
-	public void deleteEmp(int empId) {
+	public Employee deleteEmp(int empId) throws Exception {
+		Employee emp = getEmployee(empId);
 		repo.deleteById(empId);
+		return emp;
+	}
+
+	public void deleteAllEmp() {
+		repo.deleteAll();
 	}
 
 }
