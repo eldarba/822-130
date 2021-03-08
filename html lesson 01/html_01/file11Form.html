@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Forms</h1>
+
+    <!-- form.action - url to send the data -->
+    <!-- http://localhost:8080/api/employees/simple?name=Eli&role=Sales -->
+    <form action="http://localhost:8080/api/employees/simple" method="POST">
+        <label for="name">name</label> 
+        <br>
+        <input id="name" type="text" name="name">
+        <br>
+        <label for="role">role</label> 
+        <br>
+        <input id="role" type="text" name="role">
+        
+        <br>
+        <br>
+        <button type="submit">submit</button>
+        <br>
+        <br>
+        <button type="reset">reset</button>
+    
+    </form>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Tables</h1>
+    <table border="1" style="width: 50%">
+      <caption>
+        List of Students
+      </caption>
+      <!-- first row - for headers -->
+      <tr>
+        <!-- headers -->
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+      </tr>
+      <!-- next row - for data of first person -->
+      <tr>
+        <td>Dan</td>
+        <td>Tel Aviv</td>
+        <td>dan@mail</td>
+      </tr>
+      <!-- next row - for data of next person -->
+      <tr>
+        <td>Danna</td>
+        <td>Haifa</td>
+        <td>danna@mail</td>
+      </tr>
+    </table>
+
+    <hr />
+    <table border="1">
+      <caption>
+        Finance
+      </caption>
+      <tr>
+        <th>Month</th>
+        <th>Savings</th>
+        <th>Savings for holiday</th>
+      </tr>
+      <tr>
+        <td>January</td>
+        <td>80$</td>
+        <td rowspan="2">spans 2 rows</td>
+      </tr>
+      <tr>
+        <td>February</td>
+        <td>100$</td>
+      </tr>
+      <tr>
+        <td rowspan="2">aaa</td>
+        <td>aaa</td>
+        <td>aaa</td>
+      </tr>
+      <tr>
+        <td colspan="2">spans 2 columns</td>
+      </tr>
+    </table>
+  </body>
+</html>
