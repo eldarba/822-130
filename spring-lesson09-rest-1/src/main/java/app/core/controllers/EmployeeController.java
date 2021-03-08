@@ -89,6 +89,16 @@ public class EmployeeController {
 		}
 	}
 
+	@PostMapping("/employees/simple")
+	public Employee addEmployeeSimple(@RequestParam String name, @RequestParam String role) {
+		try {
+			Employee employee = new Employee(0, name, role);
+			return service.addEmployee(employee);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+		}
+	}
+
 //	@PostMapping("/employees/{name}/{role}")
 //	public Employee addEmployee(@PathVariable String name, @PathVariable String role) {
 //		Employee emp = new Employee(0, name, role);
