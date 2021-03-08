@@ -19,21 +19,21 @@ public class App6All {
 			App6All app = new App6All();
 
 //			{// get one
-//				Employee emp = app.doGetOne(2);
+//				Employee emp = app.doGetOne(3);
 //				System.out.println(emp);
 //			}
 
-			{ // get all
-				List<Employee> emps = app.doGetAll();
-				for (Employee employee : emps) {
-					System.out.println(employee);
-				}
-			}
-
-//			{
-//				Employee e = app.doDeleteOne(2);
-//				System.out.println(e + " deleted");
+//			{ // get all
+//				List<Employee> emps = app.doGetAll();
+//				for (Employee employee : emps) {
+//					System.out.println(employee);
+//				}
 //			}
+
+			{
+				Employee e = app.doDeleteOne(12);
+				System.out.println(e + " deleted");
+			}
 
 		} catch (Exception e) {
 			System.out.println("Error");
