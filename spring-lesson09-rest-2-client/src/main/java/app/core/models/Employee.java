@@ -1,5 +1,6 @@
 package app.core.models;
 
+// this is a bean class (holds data)
 public class Employee {
 
 	private int id;
