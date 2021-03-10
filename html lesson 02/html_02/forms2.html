@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>check boxes</title>
+  </head>
+  <body>
+    <h1>Checkboxes</h1>
+    <fieldset>
+      <legend>Car Features</legend>
+      <form action="">
+        <!-- checkboxes -->
+        <div>
+          <input id="ac" type="checkbox" name="ac" checked />
+          <label for="ac">AC</label>
+        </div>
+        <div>
+          <input id="horn" type="checkbox" name="horn" />
+          <label for="horn">Horn</label>
+        </div>
+        <div>
+          <input id="leather" type="checkbox" name="leather" />
+          <label for="leather">Leather</label>
+        </div>
+        <div>
+          <input id="sand-roof" type="checkbox" name="sand-roof" />
+          <label for="sand-roof">Sand Roof</label>
+        </div>
+
+        <!-- buttons -->
+        <div>
+          <input type="submit" />
+          <input type="reset" />
+        </div>
+      </form>
+    </fieldset>
+
+    <br />
+
+    <fieldset>
+      <legend>Coose your areas of interest</legend>
+      <!-- a set of checkboxes: same name, diferent values -->
+      <form action="">
+        <div>
+          <input id="music" type="checkbox" name="interests" value="music" />
+          <label for="music">Music</label>
+        </div>
+        <div>
+          <input id="books" type="checkbox" name="interests" value="books" />
+          <label for="books">Books</label>
+        </div>
+        <!-- buttons -->
+        <div>
+          <input type="submit" />
+          <input type="reset" />
+        </div>
+      </form>
+    </fieldset>
+    <br />
+
+    <!-- radio buttons -->
+    <fieldset>
+      <legend>choose language</legend>
+      <form action="">
+        <div>
+          <input id="html" type="radio" name="lang" value="html" />
+          <label for="html">HTML</label>
+        </div>
+        <div>
+          <input id="css" type="radio" name="lang" value="css" />
+          <label for="css">CSS</label>
+        </div>
+        <div>
+          <input id="js" type="radio" name="lang" value="js" />
+          <label for="js">JavaScript</label>
+        </div>
+        <!-- buttons -->
+        <div>
+          <input type="submit" />
+          <input type="reset" />
+        </div>
+      </form>
+    </fieldset>
+  </body>
+</html>

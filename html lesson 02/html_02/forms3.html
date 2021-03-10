@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>select</h1>
+    <fieldset>
+      <legend>choose one pet</legend>
+      <form action="">
+        <label for="pet-select">Choose one pet</label>
+        <select name="pets" id="pet-select" required>
+          <option value="">--choose one--</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="parrot">Parrot</option>
+          <option value="hamster">Hamster</option>
+          <option value="goldfish">Goldfish</option>
+          <option value="spider">Spider</option>
+        </select>
+        <input type="submit" />
+        <input type="reset" />
+      </form>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>choose multiple pet</legend>
+      <form action="">
+        <label for="pet-select">Choose one pet</label>
+        <select name="pets" id="pet-select" required multiple size="10">
+          <option value="">--choose one--</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="parrot" selected>Parrot</option>
+          <option value="hamster">Hamster</option>
+          <option value="goldfish" selected>Goldfish</option>
+          <option value="spider">Spider</option>
+        </select>
+        <input type="submit" />
+        <input type="reset" />
+      </form>
+    </fieldset>
+
+    <br />
+    <div>
+      <a href="forms3.html">reload</a>
+    </div>
+  </body>
+</html>

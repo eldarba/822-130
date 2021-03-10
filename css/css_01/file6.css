@@ -1,0 +1,26 @@
+h1 {
+  text-align: center;
+}
+
+div.centered {
+  text-align: center;
+  background-color: cadetblue;
+}
+
+a {
+  background-color: yellow;
+}
+
+p,
+span {
+  border: 3px solid black;
+}
+
+p {
+  width: 20%;
+  /* display: inline; */
+}
+
+span {
+  /* display: block; */
+}

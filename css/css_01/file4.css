@@ -1,0 +1,22 @@
+/* more general */
+h1,
+h2 {
+  color: violet;
+  text-align: center;
+  text-decoration: underline;
+}
+
+/* more specific */
+h2.the-class {
+  color: green;
+}
+
+/* more specific */
+p.the-class {
+  color: blue;
+}
+
+/* more general */
+.the-class {
+  font-style: italic;
+}

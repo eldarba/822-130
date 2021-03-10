@@ -1,0 +1,10 @@
+h2 {
+  text-align: center;
+  font-style: italic;
+}
+
+p {
+  border: 3px solid black;
+  width: 300px;
+  color: blue;
+}

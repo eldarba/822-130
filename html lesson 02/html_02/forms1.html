@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>forms</h1>
+
+    <fieldset>
+      <legend>general inputs</legend>
+      <form action="">
+        <!-- text -->
+        <div>
+          <input type="text" name="text" placeholder="text" required />
+        </div>
+        <!-- password -->
+        <div>
+          <input type="password" name="password" placeholder="password" />
+        </div>
+        <!-- text area (input as well) -->
+        <div>
+          <textarea
+            name="comments"
+            cols="30"
+            rows="10"
+            placeholder="comments"
+          ></textarea>
+        </div>
+
+        <!-- hidden -->
+        <input type="hidden" name="hiden" value="secret" />
+
+        <!-- email -->
+        <div>
+          <input type="email" name="email" placeholder="email" />
+        </div>
+        <!-- number -->
+        <div>
+          <input
+            type="number"
+            name="number"
+            placeholder="number"
+            step="0.001"
+            min="0"
+            max="100"
+          />
+        </div>
+
+        <!-- buttons -->
+        <input type="submit" />
+        <input type="reset" />
+
+        <!-- 
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        -->
+      </form>
+    </fieldset>
+
+    <br />
+    <fieldset>
+      <legend>colors</legend>
+      <form action="">
+        <!-- colors -->
+        <div>
+          <input type="color" name="color" />
+        </div>
+        <!-- colors -->
+        <div>
+          <input type="color" name="color" value="#ff0000" />
+          <input type="color" name="color" value="#00ff00" />
+          <input type="color" name="color" value="#0000ff" />
+          <input type="color" name="color" value="#000000" />
+          <input type="color" name="color" value="#ffffff" />
+        </div>
+        <!-- buttons -->
+        <input type="submit" />
+        <input type="reset" />
+      </form>
+    </fieldset>
+
+    <br />
+    <fieldset>
+      <legend>times</legend>
+      <form action="">
+        <!-- date -->
+        <div>
+          <input type="date" name="date" />
+        </div>
+        <!-- date set to  a value -->
+        <div>
+          <input type="date" name="date" value="2015-05-18" min="2010-01-01" />
+        </div>
+        <!-- datetime -->
+        <div>
+          <input type="datetime-local" name="datetime" />
+        </div>
+        <!-- datetime with value -->
+        <div>
+          <input
+            type="datetime-local"
+            name="datetime2"
+            value="2015-05-18T16:45"
+          />
+        </div>
+        <!-- buttons -->
+        <input type="submit" />
+        <input type="reset" />
+      </form>
+    </fieldset>
+  </body>
+</html>

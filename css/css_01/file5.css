@@ -1,0 +1,11 @@
+/* direct in indirect children */
+/* span in p */
+p span {
+  color: red;
+}
+
+/* direct children only */
+/* span directly in p */
+p > span {
+  background-color: cadetblue;
+}
