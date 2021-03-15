@@ -1,0 +1,62 @@
+html,
+body {
+  margin: 0;
+  height: 150%;
+  width: 150%;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  border: 5px solid black;
+  box-sizing: border-box;
+  padding: 5px;
+  background-color: pink;
+}
+
+.relative {
+  position: relative;
+  background-color: salmon;
+  bottom: 50px;
+  left: 50px;
+  /* z-index: -1; */
+}
+
+.fixed {
+  position: fixed;
+  background-color: skyblue;
+  right: 0;
+  bottom: 0;
+  /* z-index: -1; */
+}
+.absolute {
+  position: absolute;
+  background-color: palegreen;
+  right: 0;
+  top: 20%;
+  /* z-index: -1; */
+}
+.absolute2 {
+  position: absolute;
+  background-color: red;
+  left: 50%;
+  top: 50%;
+  /* transform: translateX(-50%) translateY(-50%); */
+  /* transform: translate(-50%, -50%) rotate(45deg); */
+  transform: translate(-50%, -50%);
+}
+
+.sticky {
+  position: sticky;
+  top: 0px;
+  left: 50px;
+}
+
+fieldset {
+  padding: 0;
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  width: 500px;
+  height: 300px;
+}

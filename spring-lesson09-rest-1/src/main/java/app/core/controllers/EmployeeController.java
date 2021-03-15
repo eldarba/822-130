@@ -1,5 +1,6 @@
 package app.core.controllers;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,6 +124,19 @@ public class EmployeeController {
 		Employee e = getOneEmp(id);
 		service.deleteEmp(id);
 		return e;
+	}
+
+	@PostMapping("/interests")
+	public String addInterestsAndColors(@RequestParam String[] interests, @RequestParam String[] colors) {
+		for (String string : interests) {
+			System.out.println(string);
+		}
+		System.out.println("+");
+		for (String string : colors) {
+			System.out.println(string);
+		}
+		System.out.println("=======");
+		return Arrays.toString(interests) + " === " + Arrays.toString(colors);
 	}
 
 }
