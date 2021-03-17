@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo</h1>
+    <script>
+      var arr = [45, 4, 9, 16, 25];
+
+      // FILTER
+      // use filter to create a new array with elements that pass a test
+      var over18 = arr.filter(testFn);
+
+      function testFn(e, index, arr) {
+        return e > 18;
+      }
+
+      console.log(arr.toString());
+      console.log(over18.toString());
+
+      console.log("=================");
+      // REDUCE
+      var sum = arr.reduce(callBack);
+      console.log(sum);
+
+      function callBack(total, e, index, arr) {
+        return total + e;
+      }
+
+      // REDUCE using arrow method
+      var newSum = arr.reduce((total, e, index, arr) => total + e);
+      console.log(newSum);
+
+      // EVERY - check if all array elements pass a test
+      var age = 5;
+      var allOverAge = arr.every((e) => e > age);
+      console.log(arr);
+      console.log("are all elements over " + age + "? " + allOverAge);
+    </script>
+  </body>
+</html>

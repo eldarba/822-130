@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo</h1>
+    <script>
+      var arr = ["red", "green", "blue"];
+      console.log(arr.toString());
+      // use shift to remove first element
+      // shift will remove first element and returns it
+      console.log(arr.shift());
+      console.log(arr.toString());
+
+      // unshift will add one or more elements to the begining of the array
+      //and will return the new length
+      let arrNewLength = arr.unshift("black", "white");
+      console.log(arrNewLength);
+      console.log(arr.toString());
+    </script>
+  </body>
+</html>

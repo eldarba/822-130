@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo</h1>
+    <div id="grN"></div>
+    <div id="gr"></div>
+    <script>
+      var grade = Math.floor(Math.random() * 11);
+      grade = 0;
+      console.log(grade);
+      document.getElementById("grN").innerHTML = grade;
+
+      // swich cases are checed using === (equality in type and value)
+      switch (grade) {
+        case 0:
+        case "0":
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+          console.log("fail");
+          document.getElementById("gr").innerHTML = "fail";
+          break;
+        case 6:
+        case 7:
+          console.log("pass");
+          document.getElementById("gr").innerHTML = "pass";
+          break;
+        default:
+          console.log("good");
+          document.getElementById("gr").innerHTML = "good";
+          break;
+      }
+    </script>
+  </body>
+</html>

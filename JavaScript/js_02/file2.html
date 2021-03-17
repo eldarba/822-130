@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo</h1>
+    <script>
+      var arr = [40, 100, 100, 1, 5, 25, 10];
+      console.log(arr.toString());
+
+      // default sort is done alphbetically
+      arr.sort();
+      console.log(arr.toString());
+
+      console.log("=================");
+
+      // to sort differently we need to suply the sorting logic
+      function comparatorFn(a, b) {
+        // if a > b return a positive
+        // if a < b return a negative
+        // if a == b return 0
+        return a - b;
+      }
+
+      arr.sort(comparatorFn);
+      console.log(arr.toString());
+
+      console.log("=================");
+      arr = [40, 100, 100, 1, 5, 25, 10];
+      console.log(arr.toString());
+      // we can use anonymous function
+      arr.sort(function (a, b) {
+        return a - b;
+      });
+      console.log(arr.toString());
+
+      console.log("=================");
+      arr = [40, 100, 100, 1, 5, 25, 10];
+      console.log(arr.toString());
+      // define the callback function using arrow method syntax
+      arr.sort((a, b) => a - b);
+      console.log(arr.toString());
+
+      // define a function using arrow method syntax
+      let f = (a, b) => a - b;
+      console.log(typeof f);
+      console.dir(f);
+      console.log(document.toString());
+      console.log(document);
+      console.dir(document);
+    </script>
+  </body>
+</html>

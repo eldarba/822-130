@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo</h1>
+    <script>
+      var arr = [3, 6, 1, 9, 2, 5, 1];
+      arr.forEach(callBackFn);
+
+      function callBackFn(e, index, theArray) {
+        console.log(index + ") " + e);
+      }
+    </script>
+  </body>
+</html>

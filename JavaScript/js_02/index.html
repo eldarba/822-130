@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Store</title>
+  </head>
+  <body style="background-color: palegreen">
+    <h1>Store of Items</h1>
+    <fieldset>
+      <legend>dashboard</legend>
+      <div>id <input id="id" type="text" /></div>
+      <div>name <input id="name" type="text" /></div>
+      <div>price<input id="price" type="text" /></div>
+
+      <br />
+      <div>
+        <button onclick="save()">Save</button>
+        <button onclick="getOne()">Get One</button>
+        <button onclick="getAll()">Get All</button>
+        <button onclick="update()">Update</button>
+        <button onclick="deleteOne()">Delete One</button>
+        <button onclick="deleteAll()">Delete All</button>
+      </div>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>Response</legend>
+      <div id="resp"></div>
+    </fieldset>
+
+    <script>
+      function save() {
+        // get item details from page
+        let name = document.getElementById("name").value;
+        let price = document.getElementById("price").value;
+        // create an Item object
+        let item = new Item(0, name, price);
+        console.log(item.toString());
+        // turn the Item object to JSON
+        let itemAsJson = JSON.stringify(item);
+        console.log(itemAsJson);
+
+        // to send request to the server endpoint we need an instance of XMLHttpRequest
+        let xhttp = new XMLHttpRequest(); // readystate 0
+        console.dir(xhttp);
+
+        xhttp.onreadystatechange = function () {
+          // readystate 2 - headers ready
+          // readystate 3 - part of body is ready
+          // readystate 4 - response body is ready
+          if (this.readyState == 4) {
+            document.getElementById("resp").innerHTML = this.response;
+          }
+        };
+
+        // define the request method and url
+        xhttp.open("post", "http://localhost:8080/items"); // readystate 1
+        // set a request header to notify server that we send a JSON
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        // send the request
+        xhttp.send(itemAsJson);
+      }
+
+      // model class
+      class Item {
+        constructor(id, name, price) {
+          this.id = id;
+          this.name = name;
+          this.price = price;
+        }
+
+        toString() {
+          return (
+            "Item[id=" +
+            this.id +
+            ", name=" +
+            this.name +
+            ", price=" +
+            this.price +
+            "]"
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

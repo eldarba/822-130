@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo</h1>
+
+    <div style="background-color: green" id="content"></div>
+    <div style="background-color: red" id="error"></div>
+
+    <script>
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.setAge(age);
+        }
+
+        setAge(age) {
+          if (age >= 0 && age <= 120) {
+            this.age = age;
+          } else {
+            // === option 1 - use JS built in Error
+            // let err = new Error("the age " + age + " is out of range");
+            // err.name = "PersonAgeError";
+            // throw err;
+
+            // === option 2 - use our custom Error
+            throw new AgeError("the age " + age + " is out of range");
+
+            // === option 3 - throw any type. can be thrown (as error)
+            // throw "the age " + age + " is out of range";
+          }
+        }
+
+        toString() {
+          return "Person[name=" + this.name + ", age=" + this.age + "]";
+        }
+      }
+
+      // our own defined error
+      class AgeError extends Error {
+        constructor(message) {
+          super(message);
+          this.name = "AgeError";
+        }
+      }
+
+      try {
+        var p = new Person("aaa", 200);
+        console.log(p);
+        p.setAge(25);
+        console.log(p);
+        document.getElementById("content").innerHTML = p;
+      } catch (error) {
+        document.getElementById("error").innerHTML = error.message;
+        console.dir(error);
+        // document.getElementById("error").innerHTML = error;
+      }
+    </script>
+  </body>
+</html>

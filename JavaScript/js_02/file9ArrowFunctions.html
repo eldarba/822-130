@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo - Arrow Functions</h1>
+
+    <script>
+      // functions in js are data types
+      // standard function
+      var f1 = function () {
+        return "Hello f1";
+      };
+
+      // arrow function
+      var a1 = () => {
+        return "Hello a1";
+      };
+
+      // arrow function short (with return only)
+      var a2 = () => "Hello a2";
+
+      // arrow function with parameters
+      var sum1 = (a, b) => {
+        var sum = Number(a) + Number(b);
+        return sum;
+      };
+
+      // arrow function with parameters (short)
+      var sum2 = (a, b) => +a + +b;
+
+      // arrow function with one parameters
+      var msg1 = (m) => "the message was: " + m;
+      // arrow function with one parameters short
+      var msg2 = m => "the message was: " + m;
+
+      console.log(f1());
+      console.log(a1());
+      console.log(a2());
+      console.log(sum1(4, 7));
+      console.log(sum2(3, 6));
+      console.log(msg1("Hello 1"));
+      console.log(msg2("Hello 2"));
+
+
+      /*
+      Arrow methods are usually handy in callbacks
+      */
+
+    </script>
+  </body>
+</html>

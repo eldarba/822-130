@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JS Demo</h1>
+
+    <div id="content"></div>
+    <div id="error"></div>
+
+    <script>
+      f1();
+      function f1() {
+        try {
+          console.log("invoking a non existent function");
+          nonEx();
+          console.log("success");
+          document.getElementById("content").innerHTML = "success";
+        } catch (error) {
+          console.dir(error);
+          console.log("fail");
+          document.getElementById("error").innerHTML = error.message;
+        } finally {
+          console.log("FINALLY DONE!");
+        }
+      }
+    </script>
+  </body>
+</html>
