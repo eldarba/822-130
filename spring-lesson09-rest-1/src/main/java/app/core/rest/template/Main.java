@@ -45,13 +45,20 @@ public class Main {
 
 			}
 
-			{
+			{ // PUT
 				url = "http://localhost:8080/api/person/update";
-				Employee e = new Employee(1, "Sarrah", "Engineer");
+				Employee employee = new Employee(1, "Sarrah", "Engineer");
 				// send the request using postForObject
-				RequestEntity<Employee> request = new RequestEntity<Employee>(e, HttpMethod.PUT, new URI(url));
-				e = rt.exchange(request, Employee.class).getBody();
-				System.out.println(e);
+				RequestEntity<Employee> request = new RequestEntity<Employee>(employee, HttpMethod.PUT, new URI(url));
+				employee = rt.exchange(request, Employee.class).getBody();
+				System.out.println(employee);
+				url = "http://localhost:8080/api/person/update";
+			}
+
+			{// DELETE
+				int id = 2;
+				url = "http://localhost:8080/api/person/delete?id=" + id;
+				rt.delete(url);
 
 			}
 
