@@ -2,6 +2,7 @@ package app.core.repositories;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -36,5 +37,8 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 	Long countByActiveTrue();
 
 	List<Student> findByEnrollmentAfter(LocalDate enrollmentDate);
+
+	// make sure this is working
+	Optional<Student> getByName(String name);
 
 }
