@@ -1,7 +1,10 @@
 package app.core;
 
 import java.security.Key;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Base64;
+import java.util.Date;
 
 import javax.crypto.spec.SecretKeySpec;
 
@@ -36,10 +39,17 @@ public class Demo1 {
 		// create the key from the decoded secret
 		Key key = new SecretKeySpec(Base64.getDecoder().decode(secret), algorithm);
 
+		Instant now = Instant.now();
+
 		// create a JWT instance
 		String jwt = Jwts.builder()
 
 				.signWith(key)
+
+				.setIssuedAt(Date.from(now))
+
+				// will be valid for 10 seconds
+				.setExpiration(Date.from(now.plus(10, ChronoUnit.SECONDS)))
 
 				.setSubject("aaa@mail")
 
@@ -59,6 +69,8 @@ public class Demo1 {
 		System.out.println("====================");
 		System.out.println("parsing the JWS to get a JWT");
 		JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(key).build();
+		// to demonstrate expiration paste an old JWS
+		jwt = "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjA2Mzk1MTEsImV4cCI6MTYyMDYzOTUyMSwic3ViIjoiYWFhQG1haWwiLCJGaXJzdCBuYW1lIjoiRGFuIiwiTGFzdCBuYW1lIjoiTGV2aSJ9.cefEbBejjebKVILgOzca0LJZfd0F3qjezegeCaxOrfE";
 		System.out.println(jwtParser.parse(jwt));
 		System.out.println(jwtParser.parse(jwt).getHeader());
 		System.out.println(jwtParser.parse(jwt).getBody());
